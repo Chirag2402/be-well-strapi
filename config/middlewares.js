@@ -7,8 +7,8 @@ module.exports = [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "img-src": ["'self'", "data:", "blob:", "res.cloudinary.com"],
-          "media-src": ["'self'", "data:", "blob:", "res.cloudinary.com"],
+          "img-src": ["'self'", "data:", "blob:", "res.cloudinary.com", "https://be-well-strapi.onrender.com"],
+          "media-src": ["'self'", "data:", "blob:", "res.cloudinary.com", "https://be-well-strapi.onrender.com"],
           "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net"],
         },
       },
@@ -18,7 +18,7 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://bew-well.vercel.app'], // Change to your frontend URL if needed
+      origin: ['https://bew-well.vercel.app'], // ✅ Ensure this is correct
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization'],
     },
