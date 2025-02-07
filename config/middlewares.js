@@ -18,9 +18,10 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://bew-well.vercel.app'], // ✅ Ensure this is correct
+      origin: ['https://bew-well.vercel.app'], // No trailing slash!
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization'],
+      keepHeaderOnError: true,  // Ensures preflight doesn't fail
     },
   },
   'strapi::poweredBy',
