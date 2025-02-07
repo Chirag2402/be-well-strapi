@@ -18,7 +18,7 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://bew-well.vercel.app/'], // Change to your frontend URL if needed
+      origin: ['https://bew-well.vercel.app'], // Change to your frontend URL if needed
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization'],
     },
