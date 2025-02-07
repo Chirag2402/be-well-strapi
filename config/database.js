@@ -1,17 +1,22 @@
 const path = require('path');
 
 module.exports = ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'postgres'); // ✅ Ensure it's not 'sqlite'
+  const client = env('DATABASE_CLIENT', 'sqlite');
 
   const connections = {
     mysql: {
       connection: {
-        host: env('DATABASE_HOST', 'your-mysql-host.onrender.com'), // ✅ Use Render DB host
+        host: env('DATABASE_HOST', 'localhost'),
         port: env.int('DATABASE_PORT', 3306),
-        database: env('DATABASE_NAME', 'your-db-name'),
-        user: env('DATABASE_USERNAME', 'your-db-user'),
-        password: env('DATABASE_PASSWORD', 'your-db-password'),
-        ssl: env.bool('DATABASE_SSL', true) && {
+        database: env('DATABASE_NAME', 'strapi'),
+        user: env('DATABASE_USERNAME', 'strapi'),
+        password: env('DATABASE_PASSWORD', 'strapi'),
+        ssl: env.bool('DATABASE_SSL', false) && {
+          key: env('DATABASE_SSL_KEY', undefined),
+          cert: env('DATABASE_SSL_CERT', undefined),
+          ca: env('DATABASE_SSL_CA', undefined),
+          capath: env('DATABASE_SSL_CAPATH', undefined),
+          cipher: env('DATABASE_SSL_CIPHER', undefined),
           rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
         },
       },
@@ -19,8 +24,20 @@ module.exports = ({ env }) => {
     },
     postgres: {
       connection: {
-        connectionString: env('DATABASE_URL', 'your-postgres-url'), // ✅ Ensure DATABASE_URL is used
-        ssl: env.bool('DATABASE_SSL', true) ? { rejectUnauthorized: false } : false, // ✅ Required for Render
+        connectionString: env('DATABASE_URL'),
+        host: env('DATABASE_HOST', 'localhost'),
+        port: env.int('DATABASE_PORT', 5432),
+        database: env('DATABASE_NAME', 'strapi'),
+        user: env('DATABASE_USERNAME', 'strapi'),
+        password: env('DATABASE_PASSWORD', 'strapi'),
+        ssl: env.bool('DATABASE_SSL', false) && {
+          key: env('DATABASE_SSL_KEY', undefined),
+          cert: env('DATABASE_SSL_CERT', undefined),
+          ca: env('DATABASE_SSL_CA', undefined),
+          capath: env('DATABASE_SSL_CAPATH', undefined),
+          cipher: env('DATABASE_SSL_CIPHER', undefined),
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
+        },
         schema: env('DATABASE_SCHEMA', 'public'),
       },
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
