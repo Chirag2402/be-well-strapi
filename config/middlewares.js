@@ -18,7 +18,7 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://bew-well.vercel.app'], // ✅ Ensure this is correct
+      origin: ['http://localhost:3000', 'https://bew-well.vercel.app'], // ✅ Ensure this is correct
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization'],
     },
