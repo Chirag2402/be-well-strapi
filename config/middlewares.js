@@ -23,6 +23,7 @@ module.exports = [
       headers: ['Content-Type', 'Authorization'],
     },
   },
+  'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
